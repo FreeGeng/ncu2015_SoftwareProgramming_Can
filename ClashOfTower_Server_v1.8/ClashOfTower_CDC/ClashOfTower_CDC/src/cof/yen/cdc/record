@@ -1,0 +1,85 @@
+//1. Unit: testCollision還沒實作  要問rectengle
+//2. Coordinate : 很多方法沒做完
+//4. Parameter 很多參數要討論  
+//3. Tower : 有三個技能 還要討論參數
+//8. updateThread: 更新錢 HP 
+//10. SNGemerator
+//11. Tower 只會擁有一座 或零做
+//12 .addPlayer要順便addTower
+//13. 玩家沒血後 停止加血,MONEY	
+//14. 派使者要錢	
+//14 . 塔要有等級最高5   塔升級要錢(500回寫100  (要有等級)累積金錢500.1000.2000.5000  (要有等級)塔功500.1000.1500.2000) 
+//14. 士兵升級要錢(看PPT) 
+//15. church1:clientNo錢加1000     church3:隨機選clientNo HP-300(給一個點call放效果丟XY)
+//	castle1:隨機一塔降MONEY的等級降2	castle2:隨機一玩家扣錢1000	castle3:ClientNo此玩家塔功加一級   
+//16. 玩家升級士兵要扣錢 加指令
+//17. 士兵的等級變4	
+//19. Encoder直接替換物件改方法
+//20. 加個模組的指令  addUpdateInfo
+//23. UNIT經過被擊垮的寶塔後 應該要更換aisle和roadindex和所屬的Road
+//24. 寶塔和王督的位置  該如何置中??  2550?? 2500??  關係到士兵出來的地點 以及偵測是否打塔的位置  關係到UNIT_ATK_DIST
+//25. 跟王琴說aisle畫錯
+//22. 每200ms 更新玩動作後 全部包成一個指令  不要把addInfo放到Unit的setX等等
+//6. CapitalCity : church1要updateInfo:setMONEY   church3要setEffect和setHP
+//9. EXUtility :    calltowerskill  (setEffect)
+//18. setEffect(String effect, int x, in y)  罐頭加指令
+//15. church2:clientNo某個aisle所有士兵remove(  setEffect 一條路切10段call放效果丟XY)
+//5. Messenger : 還有一個方法實作(好像可以不用)
+// 11. AddMessenger 和 removeMessenger 改參數
+// 10. 英雄改名字
+// 9. setAction(Break)要有動畫   被塔打也要後退
+//21. ////initTowerPos
+	//removeUnit
+	////addUnit
+	//setUnitProperty
+	////addMessenger
+	////removeMessenger
+	////setMsgerProperty
+	////sentMsgerAriMsg
+	////sentEndScore
+	////setPlayerMoney
+	////setTowerHP
+	//setEffect
+	////setGameTime
+	
+//7. 1秒才判斷一次攻擊   有個方法是一開始設定士兵的action:ATTACK
+8. AC: public void addPlayer(int clientNo);
+	public void addUnit(String type, int level, int clientno, int aisle);
+   AC: public void upgradeUnit(int clientNo, int level);
+   AC: public void addMessenger(int clientNo);
+   AC: public void startGame();
+	public void callCapitalCitySkill (int clientNo, String skillName);
+   AC: public void callTowerSkill (int clientNo);
+   AC: public void callTowerUpgrade (int clientNo, String updateName);
+   AC: public ArrayList<String> getUpdateInfo();
+ 10. unit break之後會馬上往前一步	可能break也是1秒
+ 11. 塔死掉後 士兵也要清掉
+
+
+其次：
+22. Unit多個出口
+26. 如果擊退的位置在寶塔上  還沒有寫對應  關鍵是Coordinate:setRoadPrePos  目前作法是限制在寶塔上不能被擊退
+27. 阿宏限制clientNo 0~3
+
+
+
+
+
+根據進入遊戲的時間：玩家先進入的話  會在0的位置，接著依序為1 2 ... 
+	  /\
+   3 /	\ 0
+	/    \   
+    \    /
+   2 \  / 1
+      \/
+     
+     
+     
+OTHER
+1. 罐頭的UDP要可以傳STRING
+
+[轉換物件座標]
+請 import cot.qin.sre.*; 服用。
+使用方法，輸入任意座標，若在window內則輸出繪圖座標。
+已經校準並更改為物件座標，請直接放入drawImage()。
+public int[] changeXY(int[] xy)
